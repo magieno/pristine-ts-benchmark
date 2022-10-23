@@ -5,18 +5,22 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
-    "express": "ts-node ./src/express.ts",
+    "pristine-express": "ts-node ./src/express.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pristine-ts/aws": "^0.0.214",
     "@pristine-ts/core": "^0.0.214",
     "@pristine-ts/express": "^0.0.214",
     "@pristine-ts/logging": "^0.0.214",
+    "@pristine-ts/networking": "^0.0.214",
+    "aws-lambda": "^1.0.7",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.97",
     "@types/jest": "^27.5.1",
     "@types/node": "^16.11.66",
     "jest": "^28.1.0",

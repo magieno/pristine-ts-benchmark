@@ -1579,6 +1579,35 @@ app.put('/api/1.0/zebras/*', (req, res) => {});
 app.patch('/api/1.0/zebras/*', (req, res) => {});
 app.delete('/api/1.0/zebras/*', (req, res) => {});
 
+function getMemoryUsage() {
+    const memoryUsage = process.memoryUsage();
+
+    let response = {};
+
+    for (let key in memoryUsage) {
+        response[key] = Math.round(memoryUsage[key] / 1024 / 1024 * 100) / 100 + "MB";
+    }
+
+    return response;
+}
+
+
+app.get('/api/1.0/tests/quick', (req, res) => {
+    res.send({
+        framework: "express",
+        memoryUsage: getMemoryUsage(),
+        data: ["purry", "furry"],
+    });
+});
+app.get('/api/1.0/tests/long-running-calculation', (req, res) => {
+    for (let i = 0; i < 1000000000; i++) {
+    }
+
+    res.send({
+        framework: "express",
+        memoryUsage: getMemoryUsage(),
+    }) ;
+});
 
 app.all('*', async (req, res) => {
 
